@@ -66,6 +66,12 @@ async function run() {
             res.json(result)
         });
 
+        app.post('/products', async (req, res) => {
+            const product = req.body;
+            const result = await productsCollections.insertOne(product);
+            res.json(result);
+        });
+
     }
     finally {
         // await client.close();
