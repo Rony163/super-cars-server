@@ -41,6 +41,13 @@ async function run() {
             res.json(product);
         });
 
+        app.delete('/products/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await productsCollections.deleteOne(query);
+            res.json(result);
+        })
+
         app.post('/orders', async (req, res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
